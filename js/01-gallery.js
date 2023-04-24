@@ -25,8 +25,7 @@ function handleClickElementGallery(e) {
         onClose: () => {
             document.removeEventListener('keydown', handleEscPress);
         },
-    }
-    );
+    });
 
     galleryWindow.show();
 
