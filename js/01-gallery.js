@@ -17,15 +17,25 @@ function handleClickElementGallery(e) {
         return;
     }
 
-    galleryContainer.addEventListener('keydown', (e) => {
+    const galleryWindow = basicLightbox.create(`<img src="${e.target.dataset.source}" width="800" height="600">`,
+        
+        {onShow: () => {
+            document.addEventListener('keydown', handleEscPress);
+        },
+        onClose: () => {
+            document.removeEventListener('keydown', handleEscPress);
+        },
+    }
+    );
+
+    galleryWindow.show();
+
+    function handleEscPress (e) {
         if (e.key !== 'Escape') {
             return;
-        }
+        }  
         galleryWindow.close();
-    })
-
-    const galleryWindow = basicLightbox.create(`<img src="${e.target.dataset.source}" width="800" height="600">`);
-    galleryWindow.show();
+    }
 }
 
 function createGalleryMarkup(pictures) {
