@@ -1,11 +1,11 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-const galeryContainer = document.querySelector('.gallery');
+const galleryContainer = document.querySelector('.gallery');
 const galleryCards = createGalleryMarkup(galleryItems);
-galeryContainer.insertAdjacentHTML('beforeend', galleryCards);
+galleryContainer.insertAdjacentHTML('beforeend', galleryCards);
 
-galeryContainer.addEventListener('click', handleClickElementGallety);
+galleryContainer.addEventListener('click', handleClickElementGallety);
 
 
 
@@ -13,7 +13,7 @@ function handleClickElementGallety(event) {
     if (event.target.tagName !== 'IMG') {
         return;
     }
-    galeryContainer.addEventListener('keydown', (event) => {
+    galleryContainer.addEventListener('keydown', (event) => {
         if (event.key !== 'Escape') {
             return;
         }
