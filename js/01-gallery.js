@@ -5,23 +5,27 @@ const galleryContainer = document.querySelector('.gallery');
 const galleryCards = createGalleryMarkup(galleryItems);
 galleryContainer.insertAdjacentHTML('beforeend', galleryCards);
 
-galleryContainer.addEventListener('click', handleClickElementGallety);
+galleryContainer.addEventListener('click', handleClickElementGallery);
 
 
 
-function handleClickElementGallety(event) {
-    if (event.target.tagName !== 'IMG') {
+function handleClickElementGallery(e) {
+
+    e.preventDefault();
+
+    if (e.target.tagName !== 'IMG') {
         return;
     }
-    galleryContainer.addEventListener('keydown', (event) => {
-        if (event.key !== 'Escape') {
+
+    galleryContainer.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') {
             return;
         }
-        instance.close();
+        galleryWindow.close();
     })
 
-    const instance = basicLightbox.create(`<img src="${event.target.dataset.source}" width="800" height="600">`);
-    instance.show();
+    const galleryWindow = basicLightbox.create(`<img src="${e.target.dataset.source}" width="800" height="600">`);
+    galleryWindow.show();
 }
 
 function createGalleryMarkup(pictures) {
@@ -29,7 +33,7 @@ function createGalleryMarkup(pictures) {
         .map(({ preview, original, description }) => {
             return `
             <li class="gallery__item">
-                <a class="gallery__link" href="#">
+                <a class="gallery__link" href="${original}">
                   <img
                     class="gallery__image"
                     src="${preview}"
