@@ -8,7 +8,6 @@ galleryContainer.insertAdjacentHTML('beforeend', galleryCards);
 galleryContainer.addEventListener('click', handleClickElementGallery);
 
 
-
 function handleClickElementGallery(e) {
 
     e.preventDefault();
@@ -20,16 +19,16 @@ function handleClickElementGallery(e) {
     const galleryWindow = basicLightbox.create(`<img src="${e.target.dataset.source}" width="800" height="600">`,
         
         {onShow: () => {
-            document.addEventListener('keydown', handleEscPress);
+            document.addEventListener('keydown', handleKeydownEsc);
         },
         onClose: () => {
-            document.removeEventListener('keydown', handleEscPress);
+            document.removeEventListener('keydown', handleKeydownEsc);
         },
     });
 
     galleryWindow.show();
 
-    function handleEscPress (e) {
+    function handleKeydownEsc (e) {
         if (e.key !== 'Escape') {
             return;
         }  
@@ -53,5 +52,5 @@ function createGalleryMarkup(pictures) {
             </li>
             `;
         })
-        .join(" ");
+        .join("");
 }
